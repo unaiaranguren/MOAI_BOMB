@@ -1,0 +1,4 @@
+﻿  game02.c
+c:\users\unai aranguren\documents\jokue\sdlexamplesvcws v3\02simplegame\game02\game02.c(195): warning C4013: 'jokoAmaierakoaIRABAZI' sin definir; se supone que extern devuelve como resultado int
+c:\users\unai aranguren\documents\jokue\sdlexamplesvcws v3\02simplegame\game02\game02.c(245): warning C4013: 'BUKAERA_irudiaBistaratu1' sin definir; se supone que extern devuelve como resultado int
+  02simpleGame.vcxproj -> C:\Users\Unai Aranguren\Documents\jokue\sdlExamplesVcWS V3\Debug\02simpleGame.exe
