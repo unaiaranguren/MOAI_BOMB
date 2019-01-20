@@ -9,7 +9,6 @@
 #include "soinua.h"
 
 JOKO_ELEMENTUA ESKUDOA, ESKUDOAPOWER;
-#define ESKUDOA_SOINUA ".\\sound\\audioeskudoa.wav"
 
 int IRUDIA_Eskudo()
 {
@@ -26,6 +25,7 @@ int IRUDIA_EskudoaMarraztu() //MAPAKOA------------------------------------------
 
 JOKO_ELEMENTUA EskudoaEman(int ebentu, int KolisioaX, int KolisioaY, JOKO_ELEMENTUA ESKUDOAPOWER, JOKO_ELEMENTUA HULK, int BobJokalaria)
 {
+	int SoinuaId = 0;
 	time_t timestamp;
 	timestamp = time(NULL);
 
@@ -33,11 +33,10 @@ JOKO_ELEMENTUA EskudoaEman(int ebentu, int KolisioaX, int KolisioaY, JOKO_ELEMEN
 	{
 		if ((HULK.pos.x + 48 > 144 && HULK.pos.x < 144 + 36 && HULK.pos.y + 48 > 96 && HULK.pos.y < 96 + 36) && (BobJokalaria == 0))
 		{
+			SoinuaId = loadSound(ESKUDOA_SOINUA);
+			playSound(SoinuaId);
 			irudiaMugitu(ESKUDOAPOWER.id, 460, 96);
 			HULK.poweruphartuta = 1;
-			audioInit();
-			loadTheMusic(ESKUDOA_SOINUA);
-			playMusic(ESKUDOA_SOINUA);
 
 			if (HULK.lehenengoaldiz == 0)
 			{
@@ -50,10 +49,6 @@ JOKO_ELEMENTUA EskudoaEman(int ebentu, int KolisioaX, int KolisioaY, JOKO_ELEMEN
 
 	if (HULK.lehenengoaldiz == 1)
 	{
-		if (timestamp - HULK.powerupdenbora >= 1)
-		{
-			audioTerminate();
-		}
 		if (timestamp - HULK.powerupdenbora >= 5)
 		{
 			irudiaMugitu(ESKUDOAPOWER.id, 1000, 1000);

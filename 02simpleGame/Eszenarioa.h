@@ -2,7 +2,7 @@
 #define ESZENARIOA_H
 #include "SDL.h"
 
-//ESZENARIOA
+//ESZENARIOA-------------------------------------------
 void EszenarioaSortu();
 
 //BLOKEAK

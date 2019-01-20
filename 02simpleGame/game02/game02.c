@@ -27,7 +27,10 @@
 //----------------------------------------------------------------------------
 
 //BUKAERA------------------------------------------------------------
-int BUKAERA_irudiaBistaratu();
+int BUKAERA_irudiaBistaratu(JOKO_ELEMENTUA HULK);
+int jokoAmaierakoaIRABAZI(EGOERA egoera, JOKO_ELEMENTUA HULK);
+int BUKAERA_irudiaBistaratu1(JOKO_ELEMENTUA HULK);
+
 //HASIERAKO MEZUA-------------------------------------------------------------------
 void sarreraMezuaIdatzi();
 
@@ -56,11 +59,12 @@ void sarreraMezuaIdatzi()
 EGOERA jokatu(void)
 {
 	int mugitu = 0, BizitzaKont = 0, KontHulkKentzeko = 0, ApurtzekoaXEzkerretik = 0, ApurtzekoaXEskumatik = 0, ApurtzekoaXEskumatikKroko = 0;
-	int dPosY = 1, dPosX = 1; //ETSAIEN MUG
+	int dPosY = 1, dPosX = 1; //ETSAIEN MUGIMENDUA
 	int BlokeKolisioaX = 0, BlokeKolisioaY = 0;
 	int BobJokalaria = 0, KrokoJokalaria = 0;
-	EGOERA  egoera = JOLASTEN;
 	int ebentu = 0, KOLISIOAETSAIA = 0, KOLISIOAETSAIAKROKO = 0;
+
+	EGOERA  egoera = JOLASTEN;
 	JOKO_ELEMENTUA HULK, ETSAIABOB, ETSAIAKROKO, Bizitzak, ESKUDOA, ESKUDOAPOWER, BLOKEAAPURTZEKO;
 	BONBA_ELEMENTUA BONBA, EZTANDA;
 
@@ -110,6 +114,7 @@ EGOERA jokatu(void)
 	BONBA.BobHilDa = 0;
 	BONBA.KrokoHilDa = 0;
 	BONBA.kontagailuaIrabazi = 0;
+	BONBA.HulkKolisioa = 0;
 	//AUDIOA-----------------------------------------------------------------------------------------------------
 	audioTerminate(JOKOA_SOUND_LOOSE);
 
@@ -126,6 +131,23 @@ EGOERA jokatu(void)
 		HULK = EskudoaEman(ebentu, BlokeKolisioaX, BlokeKolisioaY, ESKUDOAPOWER, HULK, BobJokalaria);
 		ESKUDOA = PowerUp(HULK.pos.x, HULK.pos.y, ESKUDOA.id, ESKUDOA);
 		//BIZITZAK--------------------------------------------------------------------------------------------------
+		if (((BONBA.HulkKolisioa == 1) && (ESKUDOA.lehenengoaldiz == 0)) || (BONBA.HulkKolisioa == 1) && (HULK.powerupkendu == 1))
+		{
+			if (BizitzaKont == 0)
+			{
+				irudiaKendu(Bizitzak.id);
+			}
+			if (BizitzaKont == 1)
+			{
+				irudiaKendu(Bizitzak.id2);
+			}
+			if (BizitzaKont == 2)
+			{
+				irudiaKendu(Bizitzak.id3);
+			}
+			BizitzaKont++;
+			BONBA.HulkKolisioa = 0;
+		}
 		if ((BobJokalaria == 1) && (ESKUDOA.lehenengoaldiz == 0) || (BobJokalaria == 1) && (HULK.powerupkendu == 1))
 		{
 			ETSAIABOB.pos.x = 148;
@@ -144,8 +166,6 @@ EGOERA jokatu(void)
 				irudiaKendu(Bizitzak.id3);
 			}
 			BizitzaKont++;
-
-
 		}
 		if ((KrokoJokalaria == 1) && (ESKUDOA.lehenengoaldiz == 0) || (KrokoJokalaria == 1) && (HULK.powerupkendu == 1))
 		{
@@ -169,7 +189,6 @@ EGOERA jokatu(void)
 		if (BizitzaKont > 2)
 		{
 			jokoAmaierakoa(egoera, HULK);
-			/*BUKAERA_irudiaBistaratu();*/
 		}
 		//KOLISIOA_BLOKEEKIN-----------------------------------------------------------------------------------------
 		BlokeKolisioaX = KolisioakErdikoBlokeekinX(HULK.pos.x, HULK.pos.y);
@@ -187,20 +206,20 @@ EGOERA jokatu(void)
 		HULK.pos.x = HulkMugimenduaXardatza(ebentu, BlokeKolisioaX, BONBA, ApurtzekoaXEzkerretik, ApurtzekoaXEskumatik);
 		HULK.pos.y = HulkMugimenduaYardatza(ebentu, BlokeKolisioaY);
 		ETSAIAKROKO.pos.x = KrokoMugimendua(ETSAIAKROKO.id, ETSAIAKROKO.pos.x, ETSAIAKROKO.pos.y, dPosX, ApurtzekoaXEskumatikKroko);
-		//BONBAK-----------------------------------------------------------------------------------------------------	
-		BONBA = BonbarenSorrera(ebentu, HULK, BONBA, EZTANDA);
-		BONBA = EztandaSorrera(BONBA, EZTANDA, BLOKEAAPURTZEKO, ETSAIABOB, ETSAIAKROKO);
-		if (BONBA.kontagailuaIrabazi == 2)
+		//BONBAK-----------------------------------------------------------------------------------------------------
+		if (BONBA.kontagailuaIrabazi == 2) // ERASOTZAILEAK HIL OSTEKO KONTAGAILUA.
 		{
+			Sleep(1000);
 			jokoAmaierakoaIRABAZI(egoera, HULK);
 		}
+		BONBA = BonbarenSorrera(ebentu, HULK, BONBA, EZTANDA);
+		BONBA = EztandaSorrera(BONBA, EZTANDA, BLOKEAAPURTZEKO, ETSAIABOB, ETSAIAKROKO, HULK);
+		
 	} while (egoera == JOLASTEN);
-
-	/*irudiaKendu(HULK.id);*/
 	toggleMusic();
-	audioTerminate();
 	pantailaGarbitu();
 	pantailaBerriztu();
+	Mix_CloseAudio();
 	return egoera;
 }
 
@@ -210,7 +229,6 @@ int  jokoAmaierakoa(EGOERA egoera, JOKO_ELEMENTUA HULK)
   int ebentu = 0, id;
   
   audioTerminate();
-
   id=BUKAERA_irudiaBistaratu(HULK);
   return id;
 }
@@ -241,8 +259,7 @@ int  jokoAmaierakoaIRABAZI(EGOERA egoera, JOKO_ELEMENTUA HULK)
 	int ebentu = 0, id;
 
 	audioTerminate();
-
-		id = BUKAERA_irudiaBistaratu1(HULK);
+	id = BUKAERA_irudiaBistaratu1(HULK);
 	return id;
 }
 

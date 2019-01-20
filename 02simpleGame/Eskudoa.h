@@ -8,6 +8,8 @@ int IRUDIA_Eskudo();
 #define IRUDIA_Eskudoa ".\\img\\ESKUDOA.bmp"
 #define IRUDIA_EskudoaPowerUp ".\\img\\ESKUDOA_POWERUP.bmp"
 
+#define ESKUDOA_SOINUA ".\\sound\\audioeskudoa.wav"
+
 JOKO_ELEMENTUA EskudoaEman(int ebentu, int KolisioaX, int KolisioaY, JOKO_ELEMENTUA ESKUDOAPOWER, JOKO_ELEMENTUA HULK, int BobJokalaria);
 JOKO_ELEMENTUA PowerUp(int HULKX, int HULKY, int BizitzaExtraImg, JOKO_ELEMENTUA ESKUDOA);
 

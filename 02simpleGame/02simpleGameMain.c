@@ -1,10 +1,3 @@
-/*#include "orokorrak.h"
-#include "sarrera.h"
-#include "errealitateFisikoa.h"
-#include "jokoa.h"
-#include "bukaera.h"*/
-
-//---------------------------------------------------------------------------------
 #include "imagen.h"
 #include "graphics.h"
 #include "ebentoak.h"
@@ -42,4 +35,3 @@ int main(int argc, char * str[])
 	sgItxi();
 	return 0;
 }
-

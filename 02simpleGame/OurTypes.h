@@ -19,7 +19,7 @@ typedef struct
 	POSIZIOA pos;
 	int id, id2, id3, id4, id5;
 	MOTA mota;
-	int egoera, egoera2, egoeraeztanda, eztandadenborabaiez, eztandamarraztu, eztandaprozesua, tokia, blokeaKenduDa, BobHilDa, KrokoHilDa, kontagailuaIrabazi;
+	int egoera, egoera2, egoeraeztanda, eztandadenborabaiez, eztandamarraztu, eztandaprozesua, tokia, blokeaKenduDa, BobHilDa, KrokoHilDa, kontagailuaIrabazi, HulkKolisioa;
 	time_t denborabonba, denboraeztanda;
 }BONBA_ELEMENTUA;
 

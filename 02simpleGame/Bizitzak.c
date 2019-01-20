@@ -5,7 +5,6 @@
 #include "Bizitzak.h"
 #include "OurTypes.h"
 
-JOKO_ELEMENTUA BizitzakExtra, ESKUDOA;
 int IRUDIA_bizitzaMarraztu()
 {
 	int BizitzaID = 0;

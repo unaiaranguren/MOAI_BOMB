@@ -10,7 +10,6 @@
 #define JOKOA_PLAYER_ETSAIA2GORA ".\\img\\Etsaia2Gora.bmp"
 #define JOKOA_PLAYER_ETSAIA2BEHERA ".\\img\\Etsaia2Behera.bmp"
 
-
 //ETSAIAK SORTU-------------------------------------------------------------
 int JOKOA_etsaiaMarraztuGora();
 int JOKOA_etsaiaMarraztuBehera();

@@ -4,8 +4,7 @@
 //Funtzioak---------------------------------------------
 void BotoiakSortu();
 void BotoiakSortu2();
-//int jokoaAurkeztu(int hasi);
-//int click(int ebentu);
+
 int PLAYBotoia();
 int PLAYBotoiaBI();
 

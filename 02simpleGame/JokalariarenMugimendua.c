@@ -5,8 +5,8 @@
 #include "JokalariarenMugimendua.h"
 #include "OurTypes.h"
 #include "ebentoak.h"
-
-#define BOMBA_SOINUA ".\\sound\\bonba.wav"
+#include <time.h>
+#include "soinua.h"
 
 //Hulk Marraztu------------------------------------------
 int JOKOA_jokalariaBiratuAurretik()
@@ -196,9 +196,9 @@ BONBA_ELEMENTUA BonbarenSorrera(int ebentu, JOKO_ELEMENTUA HULK, BONBA_ELEMENTUA
 }
 
 
-BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, JOKO_ELEMENTUA BLOKEAAPURTZEKO, JOKO_ELEMENTUA ETSAIABOB, JOKO_ELEMENTUA ETSAIAKROKO)
+BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, JOKO_ELEMENTUA BLOKEAAPURTZEKO, JOKO_ELEMENTUA ETSAIABOB, JOKO_ELEMENTUA ETSAIAKROKO, JOKO_ELEMENTUA HULK)
 {
-	int blokea = 48;
+	int blokea = 48, EztandaSoinuaId = 0;
 	int EzkerrekoErtza = 48, EskuinekoErtza = 336, GoikoErtza = 48, BehekoErtza = 336;
 
 	time_t timestamp;
@@ -209,12 +209,11 @@ BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, J
 
 	if (BONBA.eztandadenborabaiez == 1)
 	{
-		audioInit();
-		loadTheMusic(BOMBA_SOINUA);
+		EztandaSoinuaId = loadSound(BOMBA_SOINUA);
+		playSound(EztandaSoinuaId);
 		BONBA.denboraeztanda = timestamp;
 		BONBA.eztandadenborabaiez = 0;
 		BONBA.eztandaprozesua = 1;
-		playMusic(BOMBA_SOINUA);
 	}
 	if ((BONBA.egoeraeztanda == 1) && (BONBA.egoera2 == 0))
 	{
@@ -225,6 +224,7 @@ BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, J
 			irudiaMugitu(BONBA.id, EZTANDA.pos.x, EZTANDA.pos.y);
 			BONBA = KolisioaEztandaBlokea(EZTANDA, BLOKEAAPURTZEKO, BONBA);
 			BONBA = KolisioaEztandaEtsaia(EZTANDA, BONBA, ETSAIABOB, ETSAIAKROKO);
+			BONBA = KolisioaEztandaHulk(EZTANDA, BONBA, HULK);
 		}
 		if ((timestamp - BONBA.denboraeztanda >= 1) && (BONBA.egoeraeztanda == 1))
 		{
@@ -240,6 +240,7 @@ BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, J
 				irudiaMugitu(BONBA.id2, EZTANDA.pos.x - blokea, EZTANDA.pos.y);
 				BONBA = KolisioaEztandaBlokea(EZTANDA, BLOKEAAPURTZEKO, BONBA);
 				BONBA = KolisioaEztandaEtsaia(EZTANDA, BONBA, ETSAIABOB, ETSAIAKROKO);
+				BONBA = KolisioaEztandaHulk(EZTANDA, BONBA, HULK);
 			}
 			if ((timestamp - BONBA.denboraeztanda >= 1) && (BONBA.egoeraeztanda == 1))
 			{
@@ -255,6 +256,7 @@ BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, J
 				irudiaMugitu(BONBA.id3, EZTANDA.pos.x + blokea, EZTANDA.pos.y);
 				BONBA = KolisioaEztandaBlokea(EZTANDA, BLOKEAAPURTZEKO, BONBA);
 				BONBA = KolisioaEztandaEtsaia(EZTANDA, BONBA, ETSAIABOB, ETSAIAKROKO);
+				BONBA = KolisioaEztandaHulk(EZTANDA, BONBA, HULK);
 			}
 			if ((timestamp - BONBA.denboraeztanda >= 1) && (BONBA.egoeraeztanda == 1))
 			{
@@ -270,6 +272,7 @@ BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, J
 				irudiaMugitu(BONBA.id4, EZTANDA.pos.x, EZTANDA.pos.y - blokea);
 				BONBA = KolisioaEztandaBlokea(EZTANDA, BLOKEAAPURTZEKO, BONBA);
 				BONBA = KolisioaEztandaEtsaia(EZTANDA, BONBA, ETSAIABOB, ETSAIAKROKO);
+				BONBA = KolisioaEztandaHulk(EZTANDA, BONBA, HULK);
 			}
 			if ((timestamp - BONBA.denboraeztanda >= 1) && (BONBA.egoeraeztanda == 1))
 			{
@@ -285,6 +288,7 @@ BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, J
 				irudiaMugitu(BONBA.id5, EZTANDA.pos.x, EZTANDA.pos.y + blokea);
 				BONBA = KolisioaEztandaBlokea(EZTANDA, BLOKEAAPURTZEKO, BONBA);
 				BONBA = KolisioaEztandaEtsaia(EZTANDA, BONBA, ETSAIABOB, ETSAIAKROKO);
+				BONBA = KolisioaEztandaHulk(EZTANDA, BONBA, HULK);
 			}
 			if ((timestamp - BONBA.denboraeztanda >= 1) && (BONBA.egoeraeztanda == 1))
 			{
@@ -296,7 +300,6 @@ BONBA_ELEMENTUA EztandaSorrera(BONBA_ELEMENTUA BONBA, BONBA_ELEMENTUA EZTANDA, J
 
 	if ((timestamp - BONBA.denboraeztanda >= 1) && (BONBA.egoeraeztanda == 1))
 	{
-		audioTerminate(BOMBA_SOINUA);
 		BONBA.egoeraeztanda = 0;
 		BONBA.egoera2 = 1;
 		BONBA.eztandamarraztu = 0;
@@ -452,5 +455,52 @@ BONBA_ELEMENTUA KolisioaEztandaEtsaia(BONBA_ELEMENTUA EZTANDA, BONBA_ELEMENTUA B
 	}
 
 	return BONBA;
+}
+BONBA_ELEMENTUA KolisioaEztandaHulk(BONBA_ELEMENTUA EZTANDA, BONBA_ELEMENTUA BONBA, JOKO_ELEMENTUA HULK)
+{
+	int HulkKolisioa = 0, blokea = 48;
 
+	if (EZTANDA.tokia == 1) // ERDIKO EZTANDA
+	{
+		if ((EZTANDA.pos.x == HULK.pos.x) && (EZTANDA.pos.y == HULK.pos.y))
+		{
+			HulkKolisioa = 1;
+		}
+	}
+	if (EZTANDA.tokia == 2) // EZKERREKO EZTANDA
+	{
+		if ((EZTANDA.pos.x - blokea == HULK.pos.x) && (EZTANDA.pos.y == HULK.pos.y))
+		{
+			HulkKolisioa = 1;
+		}
+	}
+	if (EZTANDA.tokia == 3) // ESKUINEKO EZTANDA
+	{
+		if ((EZTANDA.pos.x + blokea == HULK.pos.x) && (EZTANDA.pos.y == HULK.pos.y))
+		{
+			HulkKolisioa = 1;
+		}
+	}
+	if (EZTANDA.tokia == 4) // GOIKO EZTANDA
+	{
+		if ((EZTANDA.pos.x == HULK.pos.x) && (EZTANDA.pos.y - blokea == HULK.pos.y))
+		{
+			HulkKolisioa = 1;
+		}
+	}
+	if (EZTANDA.tokia == 5) // BEHEKO EZTANDA
+	{
+		if ((EZTANDA.pos.x == HULK.pos.x) && (EZTANDA.pos.y + blokea == HULK.pos.y))
+		{
+			HulkKolisioa = 1;
+		}
+	}
+
+
+	if (HulkKolisioa == 1)
+	{
+		BONBA.HulkKolisioa = 1;
+	}
+
+	return BONBA;
 }

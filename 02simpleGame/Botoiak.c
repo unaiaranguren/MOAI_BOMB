@@ -35,10 +35,7 @@ void klik ()
 	} while (!egoera);
 }
 
-
-
 //------------------------------------------------------------------------------------PLAY----------------------------------------------------------
-
 void jolastenhasi(int ebentu)
 {
 	int hasi = 0, egoera=0, jarraitu=0;
@@ -51,10 +48,7 @@ void jolastenhasi(int ebentu)
 				irudiaKendu(1);
 				do
 				{
-					/*irudiaKendu(PLAYbotoia);*/
 					egoera = jokatu();
-					/*jokoaAurkeztu();
-					jarraitu = jokoAmaierakoa(egoera, HULK);*/
 				} while (jarraitu);
 			}
 }
@@ -69,7 +63,6 @@ void NolaJolastu(int ebentu)
 	
 		if ((pos.x > 196) && (pos.x < 464) && (pos.y > 284) && (pos.y < 308))
 		{
-			/*irudiaKendu(BOTOIA.id);*/
 			int tutoid = -5;
 
 			tutoid = irudiaKargatu(NolaJolastubotoia);
@@ -100,7 +93,6 @@ void Kredituak(int ebentu)
 
 			if ((pos.x > 234) && (pos.x < 426) && (pos.y > 335) && (pos.y < 365))
 			{
-				/*irudiaKendu(PLAYbotoia);*/
 				int egileid = -4;
 				egileid = irudiaKargatu(Egileakbotoia);
 
@@ -149,13 +141,11 @@ int Bolumena(int ebentu, int bolumena)
 //--------------------------------------------------------------------------------IRTEN------------------------------------------------------------------
 int Irten(int ebentu)
 {
-	
 	POSIZIOA pos;
 
 		pos = saguarenPosizioa();
 		if ((pos.x > 576) && (pos.x < 640) && (pos.y > 416) && (pos.y < 480))
 		{
-		
 			sgItxi();
 			return 0;
 		}
@@ -170,11 +160,6 @@ int irtenmenura(int ebentu)
 	pos = saguarenPosizioa();
 	if ((pos.x > 576) && (pos.x < 640) && (pos.y > 416) && (pos.y < 480))
 	{
-		
-		/*for (i = 0; i < 100; i++)
-		{
-			irudiaKendu(i);
-		}*/
 		pantailaGarbitu();
 		BotoiakSortu();
 		klik();
@@ -193,25 +178,8 @@ int irtenmenura(int ebentu)
 void kantua(int bolumena)
 {
 	Mix_Music * musika = NULL;
-	//int idOUT;
 
 		audioInit();
 		loadTheMusic(JOKOA_SOUND_LOOSE);
 		playMusic();
-	//if (bolumena == 1)
-	//{
-	//	
-	//}
-	//else
-	//{
-	//	idOUT = irudiaKargatu(PLAYOUT);
-	//	toggleMusic();
-
-	//	
-	//	irudiaMugitu(idOUT, 0, 0);
-
-	//	pantailaGarbitu();
-	//	irudiakMarraztu();
-	//	pantailaBerriztu();
-	//}
 }

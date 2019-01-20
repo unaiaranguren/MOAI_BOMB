@@ -1,12 +1,8 @@
 #ifndef BOTOIAK_H
 #define BOTOIAK_H
 #include "SDL.h"
-//---------------------------------------------------------
-//int EgileakMarraztu();
-//int NOLAJOLASTUkMarraztu();
-//---------------------------------------------------------
 
-
+//HASIERAKO MENUKO FUNTZIOAK--------------------------------
 void klik();
 
 void jolastenhasi(int ebentu);
@@ -17,9 +13,8 @@ int Irten(int ebentu);
 int irtenmenura(int ebentu);
 void kantua(int bolumena);
 
-
-
-
 #define NolaJolastubotoia ".\\img\\tutorial.bmp"
 #define Egileakbotoia ".\\img\\egileak.bmp"
+
+
 #endif

@@ -1,4 +1,18 @@
-﻿  game02.c
-c:\users\unai aranguren\documents\jokue\sdlexamplesvcws v3\02simplegame\game02\game02.c(195): warning C4013: 'jokoAmaierakoaIRABAZI' sin definir; se supone que extern devuelve como resultado int
-c:\users\unai aranguren\documents\jokue\sdlexamplesvcws v3\02simplegame\game02\game02.c(245): warning C4013: 'BUKAERA_irudiaBistaratu1' sin definir; se supone que extern devuelve como resultado int
-  02simpleGame.vcxproj -> C:\Users\Unai Aranguren\Documents\jokue\sdlExamplesVcWS V3\Debug\02simpleGame.exe
+﻿  ebentoak.c
+  graphics.c
+  imagen.c
+  soinua.c
+  text.c
+  02simpleGameMain.c
+  Bizitzak.c
+  Botoiak.c
+  Eskudoa.c
+c:\users\asier\desktop\sdlexamplesvcws v6 - copia\02simplegame\eskudoa.c(43): warning C4244: '=': conversión de 'time_t' a 'int'; posible pérdida de datos
+  Eszenarioa.c
+  EtsaienMugimendua.c
+  game02.c
+  HasierakoMenua.c
+  JokalariarenMugimendua.c
+  Generando código...
+c:\users\asier\desktop\sdlexamplesvcws v6 - copia\02simplegame\botoiak.c(152): warning C4715: 'Irten': no todas las rutas de acceso de control devuelven un valor
+  02simpleGame.vcxproj -> C:\Users\asier\Desktop\sdlExamplesVcWS V6 - copia\Debug\02simpleGame.exe

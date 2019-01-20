@@ -16,9 +16,6 @@ void EszenarioaSortu()
 	irudiaMugitu(Fondoa, 0, 0);
 	irudiaMugitu(AZALERABLOKEA, 0, 0);
 
-	
-
-
 	for (int posizioax = 0; posizioax < laukiarenluzera; posizioax += blokea)
 	{
 		for (int posizioay = 0; posizioay < laukiarenluzera; posizioay += blokea)
@@ -39,7 +36,8 @@ void EszenarioaSortu()
 		}
 	}
 }
-//BLOKEAK Marraztu-----------------------------------------
+
+//BLOKEAK-----------------------------------------
 int BLOKEA_solidoaMarraztu()
 {
 	int BSolidoId = 0;

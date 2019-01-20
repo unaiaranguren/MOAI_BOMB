@@ -34,36 +34,6 @@ void BotoiakSortu2()
 	irudiakMarraztu();
 	pantailaBerriztu();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int PLAYBotoia()
 {
 	int PlayId = 18;
